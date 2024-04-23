@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+#logo {
+    height: 100px;
+    width: 100px;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+}
+
+/* button {
+    background-color: #3F2305;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+} */
+
+.tablinks {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tablinks:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+}
+
+.train-container {
+    display: flex;
+    width: 100%;
+}
+
+.train-list {
+    flex: 0 0 40%; /* Take up 40% of the available space but do not grow or shrink */
+    max-width: 40%;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.train-info {
+    flex: 1; /* Make train-info grow and take available space */
+    /* max-width: 300px; Set a maximum width to avoid taking up too much space */
+    margin-left: 20px;
+    /* margin-top: 20px; */
+    padding: 10px;
+    border: 1px solid #ddd;
+
+    /* max-width: 300px;
+    padding: 10px;
+    border: 1px solid #ddd; */
+}
+
+.train-info label {
+    font-weight: bold;
+}
+
+.train-info input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.train-info button {
+    background-color: #3F2305;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.train-info button:hover {
+    background-color: #45a049;
+}
+
+section.tabcontent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+section.tabcontent > * {
+    margin-bottom: 10px;
+}
+
+#add-train {
+    margin-top: 10px;
+    display: block; /* Make the button behave like a block-level element */
+    width: 100%; /* Spread the button across the entire container */
+    padding: 10px; /* Add some padding to improve button appearance */
+    border: none;
+    box-sizing: border-box; /* Include padding within the button's width */
+    background-color: #3F2305;
+    color: #fff;
+}
+
+#submit-button, #cancel-button {
+    visibility: hidden;
+}

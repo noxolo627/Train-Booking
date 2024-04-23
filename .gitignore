@@ -1,0 +1,5 @@
+.vscode
+*.pem
+frontend/node_modules
+*.jks
+

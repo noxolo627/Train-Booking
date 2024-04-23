@@ -1,0 +1,630 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+}
+
+::selection {
+  color: #fff;
+  background: #d43f8d;
+}
+
+.container {
+  width: 50vmin;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10vmin 7vmin 2vmin 7vmin;
+}
+
+.container header {
+  font-size: 3vmax;
+  font-weight: 600;
+  margin: 0 0 5vmin 0;
+}
+
+.container .form-outer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.container .form-outer form {
+  display: flex;
+  width: 400%;
+}
+
+.form-outer form .page {
+  width: 25%;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.form-outer form .page .title {
+  text-align: left;
+  font-size: 2vmax;
+  font-weight: 500;
+}
+
+.form-outer form .page .field {
+  width: 50vmin;
+  height: 5vmin;
+  margin: 5vmin 0;
+  display: flex;
+  position: relative;
+}
+
+form .page .field .label {
+  position: absolute;
+  top: -3.5vmin;
+  font-weight: 500;
+}
+
+form .page .field input {
+  height: 100%;
+  width: 100%;
+  border: 0.2vmin solid lightgrey;
+  border-radius: 5px;
+  padding-left: 1.5vmin;
+  font-size: 1.8vmax;
+}
+
+form .page .field select {
+  width: 100%;
+  padding-left: 1vmin;
+  font-size: 1.7vmax;
+  font-weight: 500;
+}
+
+form .page .field button {
+  width: 100%;
+  height: calc(100% + 0.5vmin);
+  border: none;
+  background: #d33f8d;
+  margin-top: -2vmin;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.8vmax;
+  font-weight: 500;
+  letter-spacing: 0.5vmin;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+}
+#error-lbl {
+    color: red;
+    display: none;
+    font-weight: 300;
+    font-size: medium;
+}
+#book-error-lbl {
+    color: red;
+    display: none;
+    font-weight: 300;
+    font-size: medium;
+}
+
+form .page .field button:hover {
+  background: #000;
+}
+
+form .page .btns button {
+  margin-top: -2vmin!important;
+}
+
+form .page .btns button.prev {
+  margin-right: 0.3vmin;
+  font-size: 1.7vmax;
+}
+
+form .page .btns button.next {
+  margin-left: 0.3vmin;
+}
+
+.container .progress-bar {
+  display: flex;
+  margin: 4vmin 0;
+  user-select: none;
+}
+
+.container .progress-bar .step {
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.container .progress-bar .step p {
+  font-weight: 500;
+  font-size: 0.9vmax;
+  color: #000;
+  margin-bottom: 0.8vmin;
+}
+
+.progress-bar .step .bullet {
+  height: 3.5vmin;
+  width: 3.5vmin;
+  border: 0.2vmin solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 1.7vmax;
+  line-height: 3.5vmin;
+}
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .container .progress-bar .step p {
+    font-size: 1.5vmax;
+  }
+
+  .progress-bar .step .bullet {
+    height: 2.5vmin;
+    width: 2.5vmin;
+    font-size: 1.5vmax;
+    line-height: 2.5vmin;
+  }
+
+  .progress-bar .step .bullet.active {
+    border-width: 0.15vmin;
+  }
+
+  .progress-bar .step .bullet span {
+    font-size: 1.2vmax;
+  }
+
+  .progress-bar .step p.active {
+    font-size: 1.5vmax;
+  }
+
+  .progress-bar .step .check {
+    font-size: 1.3vmax;
+  }
+}
+
+.progress-bar .step .bullet.active {
+  border-color: #d43f8d;
+  background: #d43f8d;
+}
+
+.progress-bar .step .bullet span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.progress-bar .step .bullet.active span {
+  display: none;
+}
+
+.progress-bar .step .bullet:before,
+.progress-bar .step .bullet:after {
+  position: absolute;
+  content: '';
+  bottom: 0.8vmin;
+  right: -4.5vmin;
+  height: 0.3vmin;
+  width: 4vmin;
+  background: #262626;
+}
+
+.progress-bar .step .bullet.active:after {
+  background: #d43f8d;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: animate 0.3s linear forwards;
+}
+
+@keyframes animate {
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.progress-bar .step:last-child .bullet:before,
+.progress-bar .step:last-child .bullet:after {
+  display: none;
+}
+
+.progress-bar .step p.active {
+  color: #d43f8d;
+  transition: 0.2s linear;
+}
+
+.progress-bar .step .check {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  font-size: 1.5vmax;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.progress-bar .step .check.active {
+  display: block;
+  color: #fff;
+}
+
+
+/* Basic styles for the responsive table */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      background:  -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+    }
+    
+    ::selection {
+      color: #fff;
+      background: #d43f8d;
+    }
+    
+    .container {
+      width: 50vmin;
+      background: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 10vmin 7vmin 2vmin 7vmin;
+    }
+    
+    .container header {
+      display: flex;
+      font-size: 3vmax;
+      font-weight: 600;
+      margin: 0 0 5vmin 0;
+    }
+    
+    .container .form-outer {
+      width: 60%;
+      overflow: hidden;
+    }
+    
+    .container .form-outer form {
+      display: flex;
+      width: 400%;
+    }
+    
+    .form-outer form .page {
+      width: 25%;
+      transition: margin-left 0.3s ease-in-out;
+    }
+    
+    .form-outer form .page .title {
+      text-align: left;
+      font-size: 2vmax;
+      font-weight: 500;
+    }
+    
+    .form-outer form .page .field {
+      width: 50vmin;
+      height: 5vmin;
+      margin: 5vmin 0;
+      display: flex;
+      position: relative;
+    }
+    
+    form .page .field .label {
+      position: absolute;
+      top: -3.5vmin;
+      font-weight: 500;
+    }
+    
+    form .page .field input {
+      height: 100%;
+      width: 100%;
+      border: 0.2vmin solid lightgrey;
+      border-radius: 5px;
+      padding-left: 1.5vmin;
+      font-size: 1.8vmax;
+    }
+    
+    form .page .field select {
+      width: 100%;
+      padding-left: 1vmin;
+      font-size: 1.7vmax;
+      font-weight: 500;
+    }
+    
+    form .page .field button {
+      width: 100%;
+      height: calc(100% + 0.5vmin);
+      border: none;
+      background: #d33f8d;
+      margin-top: -2vmin;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.8vmax;
+      font-weight: 500;
+      letter-spacing: 0.5vmin;
+      text-transform: uppercase;
+      transition: 0.5s ease;
+    }
+    #error-lbl {
+        color: red;
+        display: none;
+        font-weight: 300;
+        font-size: medium;
+    }
+    #book-error-lbl {
+        color: red;
+        display: none;
+        font-weight: 300;
+        font-size: medium;
+    }
+    
+    form .page .field button:hover {
+      background: #000;
+    }
+    
+    form .page .btns button {
+      margin-top: -2vmin!important;
+    }
+    
+    form .page .btns button.prev {
+      margin-right: 0.3vmin;
+      font-size: 1.7vmax;
+    }
+    
+    form .page .btns button.next {
+      margin-left: 0.3vmin;
+    }
+    
+    .container .progress-bar {
+      display: flex;
+      margin: 4vmin 0;
+      user-select: none;
+    }
+    
+    .container .progress-bar .step {
+      text-align: center;
+      width: 100%;
+      position: relative;
+    }
+    
+    .container .progress-bar .step p {
+      font-weight: 500;
+      font-size: 1.8vmax;
+      color: #000;
+      margin-bottom: 0.8vmin;
+    }
+    
+    .progress-bar .step .bullet {
+      height: 3.5vmin;
+      width: 3.5vmin;
+      border: 0.2vmin solid #000;
+      display: inline-block;
+      border-radius: 50%;
+      position: relative;
+      transition: 0.2s;
+      font-weight: 500;
+      font-size: 1.7vmax;
+      line-height: 3.5vmin;
+    }
+    
+    .progress-bar .step .bullet.active {
+      border-color: #d43f8d;
+      background: #d43f8d;
+    }
+    
+    .progress-bar .step .bullet span {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .progress-bar .step .bullet.active span {
+      display: none;
+    }
+    
+    .progress-bar .step .bullet:before,
+    .progress-bar .step .bullet:after {
+      position: absolute;
+      content: '';
+      bottom: 0.8vmin;
+      right: -4.5vmin;
+      height: 0.3vmin;
+      width: 4vmin;
+      background: #262626;
+    }
+    
+    .progress-bar .step .bullet.active:after {
+      background: #d43f8d;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: animate 0.3s linear forwards;
+    }
+    
+    @keyframes animate {
+      100% {
+        transform: scaleX(1);
+      }
+    }
+    
+    .progress-bar .step:last-child .bullet:before,
+    .progress-bar .step:last-child .bullet:after {
+      display: none;
+    }
+    
+    .progress-bar .step p.active {
+      color: #d43f8d;
+      transition: 0.2s linear;
+    }
+    
+    .progress-bar .step .check {
+      position: absolute;
+      left: 50%;
+      top: 70%;
+      font-size: 1.5vmax;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+    
+    .progress-bar .step .check.active {
+      display: block;
+      color: #fff;
+    }
+    
+    
+    /* Basic styles for the responsive table */
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    
+    /* Media query for smaller screens */
+    @media screen and (max-width: 768px) {
+        th, td {
+            font-size: 14px;
+        }
+    }
+    
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    th, td {
+        font-size: 14px;
+    }
+}
+
+
+
+/* Define a fixed height for the pages */
+.page {
+  height: 400px; 
+  overflow-y: auto; 
+}
+
+
+.page {
+  overflow-x: auto;
+}
+
+.page::-webkit-scrollbar {
+  width: 0; 
+}
+
+.page::-webkit-scrollbar-thumb {
+  background-color: #888; 
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background-color: transparent; 
+}
+
+.page {
+  height: 400px; 
+  overflow-y: auto; 
+}
+
+.page::-webkit-scrollbar {
+  width: 0; 
+}
+
+.page::-webkit-scrollbar-thumb {
+  background-color: transparent; 
+}
+
+/* Basic styles for the responsive table */
+.table-container {
+  overflow-x: auto;
+  display: flex;
+  flex-grow: 1; 
+  padding: 20px;
+  justify-content: space-between; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  th, td {
+      font-size: 14px;
+  }
+}
+
+
+th {
+color: #000; 
+}
+
+
+/* .table-container {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  flex-grow: 1; 
+  padding: 20px;
+}
+
+.table-container table {
+  width: 100%;
+}
+
+.table-container th,
+.table-container td {
+  flex: 1; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  text-align: center; 
+} */
+
+
+
+
+
+
+

@@ -1,0 +1,813 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: AllAboard API
+host: 'localhost'
+schemes:
+  - http
+tags:
+  - name: admin 
+    description: The admin details
+  - name: station
+    description: The station details 
+  - name: trainClass
+    description: The train class details
+  - name: seatType
+    description: The seat type details
+  - name: train 
+    description: The train details
+  - name: peakTime
+    description: The peak times details 
+  - name: booking
+    description: The booking details
+paths:
+  /admin/admins:
+    get:
+      tags:
+        - admin
+      summary: Get all admins 
+      operationId: getAdmins
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items: 
+              $ref: '#/definitions/Admin'
+  
+  /admin/admin:
+    post:
+      tags:
+        - admin
+      summary: Add a new admin
+      operationId: addAdmin
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: admin 
+          description: Admin object 
+          required: true
+          schema:
+            $ref: '#/definitions/Admin'
+      responses:
+        '200':
+          description: Admin created successfully
+  
+  /admin/admin/{adminId}:
+    put:
+      tags:
+        - admin
+      summary: Update an admin
+      operationId: updateAdmin
+      parameters:
+        - name: adminId
+          in: path
+          description: ID of the admin to update
+          required: true
+          type: integer 
+        - name: admin 
+          in: body
+          description: Updated admin object 
+          required: true 
+          schema: 
+            $ref: '#/definitions/Admin'
+      responses:
+        200:
+          description: Admin updated successfully 
+        400: 
+          description: Invalid request data
+        404: 
+          description: Admin not found
+
+    delete: 
+      tags:
+        - admin 
+      summary: Delete an admin
+      operationId: deleteAdmin
+      parameters:
+        - name: adminId
+          in: path
+          description: ID of the admin to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Admin deleted successfully
+        400:
+          description: Invalid request data 
+        404:
+          description: Admin not found  
+
+  /station/stations:
+    get:
+      tags:
+        - station
+      summary: Get all stations
+      operationId: getStations
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Station'
+  
+  /station/station:
+    post:
+      tags:
+        - station
+      summary: Add a new station
+      operationId: addStation
+      consumes:
+        - application/json
+      produces: 
+        - application/json
+      parameters:
+        - in: body
+          name: station 
+          description: Station object 
+          required: true
+          schema:
+            $ref: '#/definitions/Station'
+      responses:
+        '200':
+          description: Station created successfully
+  
+  /station/station/{stationId}:
+    put:
+      tags:
+        - station
+      summary: Update a station 
+      operationId: updateStation
+      parameters:
+        - name: stationId
+          in: path 
+          description: ID of the station to update 
+          required: true
+          type: integer
+        - name: station
+          in: body
+          description: Updated station object 
+          required: true
+          schema: 
+            $ref: '#/definitions/Station'
+      responses:
+        200:
+          description: Station updated successfully
+        400: 
+          description: Invalid request data
+        404:
+          description: Station not found
+    
+    delete: 
+      tags:
+        - station 
+      summary: Delete a station 
+      operationId: deleteStation
+      parameters:
+        - name: stationId
+          in: path
+          description: ID of the station to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Station deleted successfully
+        400:
+          description: Invalid request data 
+        404:
+          description: Station not found  
+
+  /trainClass/trainClasses:
+    get:
+      tags:
+        - trainClass
+      summary: Get all classes
+      operationId: getClasses
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TrainClassType'
+
+  /trainClass/trainClass:
+    post:
+      tags:
+        - trainClass
+      summary: Add a new train class type
+      operationId: addTrainClassType
+      consumes:
+        - application/json
+      produces: 
+        - application/json
+      parameters:
+        - in: body
+          name: trainClassType 
+          description: Station object 
+          required: true
+          schema:
+            $ref: '#/definitions/TrainClassType'
+      responses:
+        '200':
+          description: Train Class Type created successfully
+
+  /trainClass/trainClass/{classId}:
+    put:
+      tags:
+        - trainClass
+      summary: Update a train class type 
+      operationId: updateTrainClassType
+      parameters:
+        - name: classId
+          in: path 
+          description: ID of the train class type to update 
+          required: true
+          type: integer
+        - name: trainClassType
+          in: body
+          description: Updated train class type object 
+          required: true
+          schema: 
+            $ref: '#/definitions/TrainClassType'
+      responses:
+        200:
+          description: Train class type updated successfully
+        400: 
+          description: Invalid request data
+        404:
+          description: Train class type not found
+    
+    delete: 
+      tags:
+        - trainClass 
+      summary: Delete a train class type 
+      operationId: deleteTrainClassType
+      parameters:
+        - name: classId
+          in: path
+          description: ID of the train class type to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Train class type deleted successfully
+        400:
+          description: Invalid request data 
+        404:
+          description: Train class type not found
+
+  /seatType/seatTypes:
+    get:
+      tags:
+        - seatType
+      summary: Get all seat types
+      operationId: getSeatTypes
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SeatType'
+  
+  /seatType/seatType:
+    post:
+      tags:
+        - seatType
+      summary: Add a new seat type
+      operationId: addSeatType
+      consumes:
+        - application/json
+      produces: 
+        - application/json
+      parameters:
+        - in: body
+          name: seatType
+          description: Seat type object 
+          required: true
+          schema:
+            $ref: '#/definitions/SeatType'
+      responses:
+        '200':
+          description: Seat type created successfully
+            
+  /seatType/seatType/{seatTypeId}:
+    put:
+      tags:
+        - seatType
+      summary: Update a seat type
+      operationId: updateSeatType
+      parameters:
+        - name: seatTypeId
+          in: path 
+          description: ID of the seat type to update 
+          required: true
+          type: integer
+        - name: seatType
+          in: body
+          description: Updated seat type object 
+          required: true
+          schema: 
+            $ref: '#/definitions/SeatType'
+      responses:
+        200:
+          description: Seat type updated successfully
+        400: 
+          description: Invalid request data
+        404:
+          description: Seat type not found
+    
+    delete: 
+      tags:
+        - seatType 
+      summary: Delete a seat type 
+      operationId: deleteSeatType
+      parameters:
+        - name: seatTypeId
+          in: path
+          description: ID of the seat type to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Seat type deleted successfully
+        400:
+          description: Invalid request data 
+        404:
+          description: Seat type not found
+    
+  /train/trains:
+    get:
+      tags:
+        - train
+      summary: Get all trains
+      operationId: getTrains
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Train'
+  
+  /train/train:
+    post:
+      tags:
+        - train 
+      summary: Add a new train 
+      operationId: addTrain
+      consumes: 
+        - application/json
+      produces: 
+        - application/json 
+      parameters: 
+        - in: body 
+          name: train 
+          description: Train object 
+          required: true 
+          schema: 
+            $ref: '#/definitions/Train'
+      responses: 
+        '200': 
+          description: Train created successfully 
+  
+  /train/train/{trainId}:
+    put:
+      tags:
+        - train
+      summary: Update a train
+      operationId: updateTrain
+      parameters:
+        - name: trainId
+          in: path 
+          description: ID of the train to update 
+          required: true
+          type: integer
+        - name: train
+          in: body
+          description: Updated train 
+          required: true
+          schema: 
+            $ref: '#/definitions/Train'
+      responses:
+        200:
+          description: Train updated successfully
+        400: 
+          description: Invalid request data
+        404:
+          description: Train not found
+    
+    delete:
+      tags:
+        - train 
+      summary: Delete a train 
+      operationId: deleteTrain
+      parameters:
+        - name: trainId
+          in: path
+          description: ID of the train to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Train deleted successfully
+        400:
+          description: Invalid request data 
+        404:
+          description: Train not found  
+  
+  /train/getTrainsBasedOnStation:
+    get:
+      tags:
+        - train
+      summary: Get trains based on station
+      operationId: getTrainsBasedOnStation
+      parameters:
+        - name: from
+          in: query
+          description: The source station
+          required: true
+          type: string
+        - name: to
+          in: query
+          description: The destination station
+          required: true
+          type: string
+        - name: date
+          in: query
+          description: The travel date
+          required: true
+          type: string
+          format: date
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Train'
+  
+  /peakTime/peakTimes:
+    get:
+      tags:
+        - peakTime
+      summary: Get all peak times 
+      operationId: getpeakTimes
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items: 
+              $ref: '#/definitions/PeakTime'
+  
+  /peakTime/peakTime:
+    post:
+      tags:
+        - peakTime
+      summary: Add a new peak time
+      operationId: addPeakTime
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: peakTime 
+          description: Peak time object 
+          required: true
+          schema:
+            $ref: '#/definitions/PeakTime'
+      responses:
+        '200':
+          description: Peak time created successfully
+  
+  /peakTime/peakTime/{peakTimeId}:
+    put:
+      tags:
+        - peakTime
+      summary: Update a peakTime
+      operationId: updatePeakTime
+      parameters:
+        - name: peakTimeId
+          in: path
+          description: ID of the peak time to update
+          required: true
+          type: integer 
+        - name: peakTime 
+          in: body
+          description: Updated peak time object 
+          required: true 
+          schema: 
+            $ref: '#/definitions/PeakTime'
+      responses:
+        200:
+          description: Peak time updated successfully 
+        400: 
+          description: Invalid request data
+        404: 
+          description: Peak time not found
+
+    delete: 
+      tags:
+        - peakTime 
+      summary: Delete a peak time
+      operationId: deletePeakTime
+      parameters:
+        - name: peakTimeId
+          in: path
+          description: ID of the peak time to delete
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Peak time deleted successfully
+        400:
+          description: Invalid request data 
+        404:
+          description: Peak time not found  
+
+  /booking/booking:
+    post:
+      tags:
+        - booking
+      summary: Create a new booking
+      operationId: bookTrain
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: booking
+          description: User Booking
+          required: true
+          schema:
+            $ref: '#/definitions/UserBooking'
+      responses:
+        '200':
+          description: Booking created successfully
+          schema: 
+            type: integer
+  
+  /booking/booking/{bookingId}:
+    get:
+      tags:
+        - booking 
+      summary: Get a booking 
+      operationId: getBooking
+      parameters:
+        - name: bookingId
+          in: path
+          description: ID of the booking to get 
+          required: true 
+          type: integer
+      responses:
+        200: 
+          description: Train Ticket 
+          schema: 
+            $ref: '#/definitions/TrainTicket'
+    
+    put:
+      tags: 
+        - booking
+      summary: Update a booking
+      operationId: updateBooking
+      parameters:
+        - name: bookingId
+          in: path
+          description: ID of the booking to update
+          required: true
+          type: integer
+        - name: booking
+          in: body
+          description: Updated booking object
+          required: true
+          schema:
+            $ref: '#/definitions/TrainTicket'
+      responses:
+        200:
+          description: Booking updated successfully
+        400:
+          description: Invalid request data
+        404:
+          description: Booking not found
+
+    delete:
+      tags:
+        - booking
+      summary: Delete a booking
+      operationId: deleteBooking 
+      parameters: 
+        - name: bookingId
+          in: path
+          description: ID of the booking to delete
+          required: true
+          type: integer
+      responses: 
+        200: 
+          description: Booking deleted successfully 
+        400:
+          description: Invalid request data
+        404:
+          description: Booking not found 
+
+  /booking/getBooking/{userEmail}:
+    get:
+      tags:
+        - booking
+      summary: Get bookings of a user 
+      operationId: getBookings 
+      parameters: 
+        - name: userEmail
+          in: path
+          description: User email of bookings to get 
+          required: true
+          type: string
+      responses: 
+        200:
+          description: Bookings 
+          schema: 
+            type: array
+            items:
+              $ref: '#/definitions/TrainTicket'
+
+definitions:
+  Admin: 
+    type: object 
+    properties: 
+      admin_id: 
+        type: integer 
+      admin_email: 
+        type: string
+  
+  Station:
+    type: object
+    properties:
+      station_id:
+        type: integer
+      station_name:
+        type: string
+    
+  TrainClassType:
+    type: object
+    properties:
+      train_class_id:
+        type: integer
+      train_class_name:
+        type: string
+  
+  SeatType:
+    type: object
+    properties:
+      seat_type_id:
+        type: integer
+      seat_type_name:
+        type: string
+  
+  TrainClass:
+    type: object 
+    properties:
+      train_class_type:
+        type: string 
+      capacity:
+        type: integer
+      base_price: 
+        type: number 
+        
+  TrainSeat: 
+    type: object 
+    properties: 
+      seat_type: 
+        type: string 
+      class_type:
+        type: string
+      seat_number:
+        type: string
+      is_booked: 
+        type: boolean 
+      seat_price:
+        type: number
+  
+  Train:
+    type: object
+    properties:
+      train_id:
+        type: integer
+      train_name:
+        type: string
+      source_station:
+        type: string
+      destination_station:
+        type: string
+      travel_date:
+        type: string
+        format: date
+      departure_time:
+        type: string
+        format: time
+      train_classes:
+        type: array
+        items:
+          $ref: '#/definitions/TrainClass'
+      train_seats: 
+        type: array 
+        items: 
+          $ref: '#/definitions/TrainSeat'
+  
+  PeakTime: 
+    type: object 
+    properties: 
+      peak_time_id:
+        type: integer
+      start_time: 
+        type: string 
+        format: time 
+      end_time: 
+        type: string
+        format: time 
+      price_increase_percentage: 
+        type: number 
+  
+  TrainTicket: 
+    type: object 
+    properties: 
+      train_name: 
+        type: string 
+      source_station: 
+        type: string 
+      destination_station: 
+        type: string 
+      travel_date: 
+        type: string
+        format: date
+      departure_time:
+        type: string
+        format: time
+      booking_id: 
+        type: integer 
+      booking_date:
+        type: string
+        format: timestamp
+      ticket_price:
+        type: number
+      train_class:
+        type: string 
+      user_email: 
+        type: string
+      passengers: 
+        type: array
+        items: 
+          $ref: '#/definitions/Passenger'
+  
+  UserBooking:
+    type: object 
+    properties:
+      train_id:
+        type: integer
+      train_class:
+        type: string 
+      user_email:
+        type: string 
+      passengers: 
+        type: array
+        items: 
+          $ref: '#/definitions/Passenger'
+  
+  Passenger:
+    type: object
+    properties:
+      seat_id:
+        type: integer
+      seat_type: 
+        type: string
+      seat_number:
+        type: string 
+      seat_price:
+        type: number
+      passenger_id: 
+        type: integer
+      passenger_name:
+        type: string
+      age:
+        type: integer
+  

@@ -1,0 +1,24 @@
+#login {
+    width: 40%;
+    height: calc(100% + 0.5vmin);
+    border: none;
+    background: #d33f8d;
+    margin-top: -2vmin;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.8vmax;
+    font-weight: 500;
+    letter-spacing: 0.5vmin;
+    text-transform: uppercase;
+    transition: 0.5s ease;
+  }
+  
+  #login:hover {
+    background: #000;
+  }
+  
+  form .page .btns button {
+    margin-top: -2vmin!important;
+  }
+ 
